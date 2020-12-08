@@ -7,22 +7,20 @@ import { InteractionService } from './interaction.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit{
-  
+export class AppComponent implements AfterViewInit {
+  title = 'Parent Component';
+  title2 = 'Component Communication using Service';
+  loggerFlag: boolean;
+  @ViewChild(ChildComponent) childComponentRef: ChildComponent;
   ngAfterViewInit(): void {
     this.childComponentRef.message = 'Message from Parent component';
   }
-  title = 'Parent Component';
-  title2 = 'Component Communication using Service'
-  @ViewChild(ChildComponent) childComponentRef: ChildComponent;
-
-  constructor(private _interactionService:InteractionService){}
-
-  greetEmployee(){
+  constructor(private _interactionService: InteractionService) {}
+  greetEmployee() {
     this._interactionService.sendMessage('Hello, Have a nice day!');
   }
 
-  appreciateEmployee(){
+  appreciateEmployee() {
     this._interactionService.sendMessage('You did a great job!');
   }
 }
